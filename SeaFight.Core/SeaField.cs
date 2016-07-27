@@ -11,6 +11,11 @@ namespace SeaFight.Core
         private ICell[,] cells;
         private int width, height;
 
+        bool isOnRightEdge = false, isOnLeftEdge = false, isOnTopEdge = false, isOnBottomEdge = false;
+        List<ICell> neighbours = new List<ICell>();
+
+
+
         public SeaField(int width, int height)
         {
             cells = new Cell[width, height];
@@ -57,8 +62,6 @@ namespace SeaFight.Core
 
         private List<ICell> GetNeighbours(ICell cell)
         {
-            bool isOnRightEdge = false, isOnLeftEdge = false, isOnTopEdge = false, isOnBottomEdge = false;
-            List<ICell> neighbours = new List<ICell>();
 
             if (cell.X < width - 1)
             {
@@ -68,7 +71,7 @@ namespace SeaFight.Core
             {
                 isOnRightEdge = true;
             }
-
+            
             if (cell.X > 0)
             {
                 neighbours.Add(cells[cell.X - 1, cell.Y]);
@@ -140,6 +143,8 @@ namespace SeaFight.Core
 
             return neighbours;
         }
+
+        
 
     }
 }
